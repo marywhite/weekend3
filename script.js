@@ -6,26 +6,32 @@ $(document).ready(function () {
     var track;
     var trackResults;
     var artist;
+    var displayCount = 0;
 
-
+// function to get recent tracks
     $.ajax({
         type: 'GET',
         url: 'http://ws.audioscrobbler.com/2.0?method=user.getRecentTracks&user=' + encodeURI(username) + '&api_key=d43908568d7b06a5c4d049def66ff619&format=json',
         crossDomain: true,
         dataType: 'json',
         success: function (data) {
-            track = data.recenttracks.track[0].name;
-            artist = data.recenttracks.track[0].artist['#text'];
-            $('.recentTrack').text(data.recenttracks.track[0].name);
-            $('.recentArtist').text(data.recenttracks.track[0].artist['#text']);
-            $('.recentImg').attr('src', data.recenttracks.track[0].image[2]['#text']);
-            $('.recentAlbum').text(data.recenttracks.track[0].album['#text']);
-
+            trackResults = data;
+            display();
         },
         error: function (xhr, status) {
             alert('Error: ' + status);
         }
     });
+
+    $('.prev').click(function(){
+        displayCount--;
+        display();
+    })
+
+   $('.next').click(function(){
+       displayCount++;
+       display();
+   })
 
 
     $('.recentImg').click(function() {
@@ -44,13 +50,22 @@ $(document).ready(function () {
                     child.find('.trackImg').attr('src', similarTrack.image[2]["#text"]);
                     child = child.next();
                 }
-
             },
             error: function (xhr, status) {
                 alert('Error: ' + status);
             }
         });
     });
+
+    function display(){
+        var currentTrack = trackResults.recenttracks.track[displayCount];
+        track = currentTrack.name;
+        artist = currentTrack.artist['#text'];
+        $('.recentTrack').text(track);
+        $('.recentArtist').text(artist);
+        $('.recentImg').attr('src', currentTrack.image[2]['#text']);
+        $('.recentAlbum').text(currentTrack.album['#text']);
+    }
 
 
 
