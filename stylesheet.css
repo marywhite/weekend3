@@ -3,7 +3,7 @@ body {
 }
 
 .bg {
-    background: url('background.jpg') no-repeat center center;
+    background: url('images/background.jpg') no-repeat center center;
     position: fixed;
     width: 100%;
     height: 15em;
