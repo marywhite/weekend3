@@ -35,8 +35,15 @@ $(document).ready(function () {
             crossDomain: true,
             dataType: 'json',
             success: function (data) {
-                console.log('Hello');
-                console.log(data);
+                var child = $('.similar').children().first();
+                var similarTrack;
+                for (var i = 0; i < 4; i ++) {
+                    similarTrack = data.similartracks.track[i]
+                    child.find('.trackName').text(similarTrack.name);
+                    child.find('.trackArtist').text(similarTrack.artist.name);
+                    child.find('.trackImg').attr('src', similarTrack.image[2]["#text"]);
+                    child = child.next();
+                }
 
             },
             error: function (xhr, status) {
@@ -45,61 +52,6 @@ $(document).ready(function () {
         });
     });
 
-    //$.ajax({
-    //    type: 'GET',
-    //    url: 'http://ws.audioscrobbler.com/2.0?method=track.search&track=' + encodeURI(track) + '&api_key=d43908568d7b06a5c4d049def66ff619&format=json',
-    //    crossDomain: true,
-    //    dataType: 'json',
-    //    success: function (data) {
-    //        trackResults = data;
-    //        console.log(trackResults);
-    //        console.log(trackResults.results.trackmatches.track[0].name);
-    //        console.log(trackResults.results.trackmatches.track[0].artist);
-    //        console.log(trackResults.results.trackmatches.track[0].image[2]);
-    //
-    //        //$('.username').text(username);
-    //        //$('.userLinkUrl').attr('src', userPage);
-    //        //$('.userLinkText').text(userPage);
-    //        //$('.kittenDescription').text(userDescription);
-    //        //$('.kittenImg').attr('src', userImage);
-    //    },
-    //    error: function (xhr, status) {
-    //        alert('Error: ' + status);
-    //    }
-    //
-    //});
 
-    //var current = $('.row').children().first();
-    //
-    //for (var i = 0; i < 4; i ++){
-    //    current
-    //}
-
-    //$.ajax({
-    //    type: 'GET',
-    //    url: 'http://ws.audioscrobbler.com/2.0?method=artist.getsimilar&artist=' + encodeURI(artist) + '&api_key=d43908568d7b06a5c4d049def66ff619&format=json',
-    //    crossDomain: true,
-    //    dataType: 'json',
-    //    success: function (data) {
-    //        console.log('Hello');
-    //        console.log(data);
-    //        //ourData = data;
-    //        //username = data.login;
-    //        //userPage = data.html_url;
-    //        //userDescription = data.location;
-    //
-    //        //userImage = data.avatar_url;
-    //
-    //        //$('.username').text(username);
-    //        //$('.userLinkUrl').attr('src', userPage);
-    //        //$('.userLinkText').text(userPage);
-    //        //$('.kittenDescription').text(userDescription);
-    //        //$('.kittenImg').attr('src', userImage);
-    //    },
-    //    error: function (xhr, status) {
-    //        alert('Error: ' + status);
-    //    }
-    //
-    //});
 
 });
