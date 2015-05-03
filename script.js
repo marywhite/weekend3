@@ -26,6 +26,7 @@ $(document).ready(function () {
 
     $('.prev').click(function(){
         displayCount--;
+        console.log('prev: ' + displayCount);
         display();
     });
 
@@ -59,11 +60,15 @@ $(document).ready(function () {
     });
 
     function display(){
+        console.log(displayCount);
+        console.log(trackResults.length)
         if (displayCount < 0){
-            displayCount = trackResults.length;
+            displayCount = trackResults.length - 1;
+            console.log(displayCount)
         }
         if (displayCount > trackResults.length) {
             displayCount = 0;
+            console.log(displayCount)
         }
         var currentTrack = trackResults[displayCount];
         track = currentTrack.name;
