@@ -2,17 +2,33 @@ body {
     background-color: rgba(255, 254, 216, .5);
 }
 
-.well {
+.border {
     background-color: rgba(114, 183, 183, 0.5);
+    height: 24em;
+}
+
+.well {
     height: 20em;
     border: 1px solid rgba(47,79,79, .3);
 }
 
-.btn {
+.border .well {
+    margin: 2em;
+}
+
+.list {
+    display: block;
+    margin: 0em auto;
+    font-size: 10em;
+    width: 100%;
+    background-color: transparent;
+}
+
+.nav {
     width: 8em;
     height: auto;
     background-color: transparent;
-    margin-top: 6em;
+    margin-top: 7em;
 }
 
 .bg {
@@ -49,4 +65,8 @@ body {
 .recentImg, .trackImg {
     margin: 0em auto;
     display: block;
+}
+
+.similar {
+    margin: 2em 0;
 }

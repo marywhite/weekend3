@@ -15,19 +15,28 @@
     <h1 class="text-center">explore recent tracks</h1>
     <p class="text-center">click on the image to find similar tracks</p>
 </div>
-<div class="container recent-track">
+<div class="container go">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <button class="btn list text-center">go</button>
+        </div>
+    </div>
+</div>
+<div class="container recent-track hidden">
    <div class="row recent">
-       <div class="col-md-3">
-           <button class="btn prev"><img src="left.png" class="img-responsive"></button>
+       <div class="col-md-3 buffer">
+           <button class="btn nav prev"><img src="left.png" class="img-responsive"></button>
        </div>
-        <div class="track col-md-4 col-md-offset-1 well">
+       <div class="border col-md-4 col-md-offset-1">
+        <div class="track well">
             <h3 class="recentTrack"></h3>
             <p class="recentArtist"></p>
             <p class="recentAlbum"></p>
             <img class="recentImg">
         </div>
-       <div class="col-md-3 col-md-offset-1">
-           <button class="btn next"><img src="right.png" class="img-responsive"></button>
+       </div>
+       <div class="col-md-3 col-md-offset-1 buffer">
+           <button class="btn nav next"><img src="right.png" class="img-responsive"></button>
        </div>
     </div>
 </div>
@@ -36,22 +45,26 @@
         <div class="track col-md-3 well hidden">
             <h3 class="trackName"></h3>
             <p class="trackArtist"></p>
-            <img class="trackImg">
+            <a class="fmlink" target="_blank"><img class="trackImg"></a>
+            <!--<img class="trackImg">-->
         </div>
         <div class="track col-md-3 well hidden">
             <h3 class="trackName"></h3>
             <p class="trackArtist"></p>
-            <img class="trackImg">
+            <a class="fmlink" target="_blank"><img class="trackImg"></a>
+            <!--<img class="trackImg">-->
         </div>
         <div class="track col-md-3 well hidden">
             <h3 class="trackName"></h3>
             <p class="trackArtist"></p>
-            <img class="trackImg">
+            <a class="fmlink" target="_blank"><img class="trackImg"></a>
+            <!--<img class="trackImg">-->
         </div>
         <div class="track col-md-3 well hidden">
             <h3 class="trackName"></h3>
             <p class="trackArtist"></p>
-            <img class="trackImg">
+            <a class="fmlink" target="_blank"><img class="trackImg"></a>
+            <!--<img class="trackImg">-->
         </div>
     </div>
 </div>

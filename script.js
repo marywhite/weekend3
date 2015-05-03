@@ -18,8 +18,11 @@ $(document).ready(function () {
     var trackResults;
     var artist;
     var displayCount = 0;
+    var link;
 
 // function to get recent tracks
+
+
     $.ajax({
         type: 'GET',
         url: 'http://ws.audioscrobbler.com/2.0?method=user.getRecentTracks&user=' + encodeURI(username) + '&limit=' + 50 + '&api_key=d43908568d7b06a5c4d049def66ff619&format=json',
@@ -35,6 +38,11 @@ $(document).ready(function () {
         }
     });
 
+    $('.list').click(function(){
+        $('.go').addClass('hidden');
+        $('.recent-track').removeClass('hidden')
+    });
+
     $('.prev').click(function(){
         displayCount--;
         console.log('prev: ' + displayCount);
@@ -46,6 +54,10 @@ $(document).ready(function () {
        display();
    });
 
+   $('.trackImg').click(function(){
+
+   })
+
 
     $('.recentImg').click(function() {
         $.ajax({
@@ -56,12 +68,14 @@ $(document).ready(function () {
             success: function (data) {
                 var child = $('.similar').children().first();
                 var similarTrack;
+                console.log(similarTrack);
                 for (var i = 0; i < 4; i ++) {
                     similarTrack = data.similartracks.track[i]
                     child.removeClass('hidden');
                     child.find('.trackName').text(similarTrack.name);
                     child.find('.trackArtist').text(similarTrack.artist.name);
-                    child.find('.trackImg').attr('src', similarTrack.image[2]["#text"]);
+                    child.find('.fmlink').attr('href', similarTrack.url);
+                    child.find('.fmlink').children().attr('src', similarTrack.image[2]["#text"]);
                     child = child.next();
                 }
             },
