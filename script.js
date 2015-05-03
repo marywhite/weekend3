@@ -1,3 +1,10 @@
+var username= 'marydecember_';
+var api_key = 'd43908568d7b06a5c4d049def66ff619';
+var track;
+var trackResults;
+var artist;
+var displayCount = 0;
+var limit = 50;
 
 $(document).ready(function () {
 
@@ -11,18 +18,11 @@ $(document).ready(function () {
         jumboScroll();
     });
 
-    var username= 'marydecember_';
-    var api_key = 'd43908568d7b06a5c4d049def66ff619';
-    var track;
-    var trackResults;
-    var artist;
-    var displayCount = 0;
-    var limit = 50;
 
 // function to get recent tracks
     $.ajax({
         type: 'GET',
-        url: 'http://ws.audioscrobbler.com/2.0?method=user.getRecentTracks&user=' + encodeURI(username) + '&limit=' + limit + '&api_key=d43908568d7b06a5c4d049def66ff619&format=json',
+        url: 'http://ws.audioscrobbler.com/2.0?method=user.getRecentTracks&user=' + encodeURI(username) + '&limit=' + limit + '&api_key=' + api_key + '&format=json',
         crossDomain: true,
         dataType: 'json',
         success: function (data) {
@@ -87,11 +87,15 @@ $(document).ready(function () {
     });
 
     function display(){
+        $('.lastPlayed').addClass('hidden');
         if (displayCount < 0){
             displayCount = trackResults.length - 1;
         }
         if (displayCount > trackResults.length-1) {
             displayCount = 0;
+        }
+        if (displayCount == 0){
+            $('.lastPlayed').removeClass('hidden');
         }
         var currentTrack = trackResults[displayCount];
         track = currentTrack.name;
