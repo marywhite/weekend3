@@ -11,11 +11,12 @@ $(document).ready(function () {
 // function to get recent tracks
     $.ajax({
         type: 'GET',
-        url: 'http://ws.audioscrobbler.com/2.0?method=user.getRecentTracks&user=' + encodeURI(username) + '&api_key=d43908568d7b06a5c4d049def66ff619&format=json',
+        url: 'http://ws.audioscrobbler.com/2.0?method=user.getRecentTracks&user=' + encodeURI(username) + '&limit=' + 50 + '&api_key=d43908568d7b06a5c4d049def66ff619&format=json',
         crossDomain: true,
         dataType: 'json',
         success: function (data) {
-            trackResults = data;
+            console.log(data)
+            trackResults = data.recenttracks.track;
             display();
         },
         error: function (xhr, status) {
@@ -26,12 +27,12 @@ $(document).ready(function () {
     $('.prev').click(function(){
         displayCount--;
         display();
-    })
+    });
 
    $('.next').click(function(){
        displayCount++;
        display();
-   })
+   });
 
 
     $('.recentImg').click(function() {
@@ -58,7 +59,13 @@ $(document).ready(function () {
     });
 
     function display(){
-        var currentTrack = trackResults.recenttracks.track[displayCount];
+        if (displayCount < 0){
+            displayCount = trackResults.length;
+        }
+        if (displayCount > trackResults.length) {
+            displayCount = 0;
+        }
+        var currentTrack = trackResults[displayCount];
         track = currentTrack.name;
         artist = currentTrack.artist['#text'];
         $('.recentTrack').text(track);
