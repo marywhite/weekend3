@@ -26,6 +26,10 @@ body {
     background-color: transparent;
 }
 
+.getSimilar {
+    font-size: 6em;
+}
+
 .nav {
     width: 8em;
     height: auto;
@@ -65,11 +69,21 @@ body {
 }
 
 .recentImg, .trackImg {
+    background-color: rgba(192,192,192,0.2);
+    width: 126px;
+    height: 126px;
     margin: 0em auto;
     display: block;
+}
+
+.recentImg:hover, .trackImg:hover {
+    opacity: .5;
 }
 
 .similar {
     margin: 2em 0;
 }
 
+.tryAgain {
+    margin: 2em 0;
+}

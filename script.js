@@ -4,7 +4,6 @@ $(document).ready(function () {
     var jumboHeight = $('.jumbotron').outerHeight();;
     function jumboScroll(){
         var scroll = $(window).scrollTop();
-        console.log(jumboHeight, scroll, jumboHeight - scroll);
         $('.bg').css('height', (jumboHeight-scroll) + 'px');
     }
 
@@ -55,7 +54,6 @@ $(document).ready(function () {
 
 
     $('.explore').click(function() {
-        $('.getSimilar').css('font-size', '4em');
         $.ajax({
             type: 'GET',
             url: 'http://ws.audioscrobbler.com/2.0?method=track.getsimilar&artist=' + encodeURI(artist) + '&track=' + track + '&api_key=d43908568d7b06a5c4d049def66ff619&format=json',
@@ -63,16 +61,23 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 var child = $('.similar').children().first();
-                var similarTrack;
-                console.log(similarTrack);
-                for (var i = 0; i < 4; i ++) {
-                    similarTrack = data.similartracks.track[i]
-                    child.removeClass('hidden');
-                    child.find('.trackName').text(similarTrack.name);
-                    child.find('.trackArtist').text(similarTrack.artist.name);
-                    child.find('.fmlink').attr('href', similarTrack.url);
-                    child.find('.fmlink').children().attr('src', similarTrack.image[2]["#text"]);
-                    child = child.next();
+
+                //if object is an array (it has similar tracks), display them
+                if( Object.prototype.toString.call( data.similartracks.track ) === '[object Array]' ) {
+                    $('.similar').removeClass('hidden');
+                    var similarTrack;
+                    for (var i = 0; i < 4; i++) {
+                        similarTrack = data.similartracks.track[i];
+                        child.removeClass('hidden');
+                        child.find('.trackName').text(similarTrack.name);
+                        child.find('.trackArtist').text(similarTrack.artist.name);
+                        child.find('.fmlink').attr('href', similarTrack.url);
+                        child.find('.fmlink').children().attr('src', similarTrack.image[2]["#text"]);
+                        child = child.next();
+                    }
+                } else {
+                    $('.tryAgain').removeClass('hidden');
+                    $('.similar').addClass('hidden');
                 }
             },
             error: function (xhr, status) {
@@ -85,7 +90,7 @@ $(document).ready(function () {
         if (displayCount < 0){
             displayCount = trackResults.length - 1;
         }
-        if (displayCount > trackResults.length) {
+        if (displayCount > trackResults.length-1) {
             displayCount = 0;
         }
         var currentTrack = trackResults[displayCount];
