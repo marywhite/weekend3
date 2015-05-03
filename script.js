@@ -1,6 +1,17 @@
 
 $(document).ready(function () {
 
+    var jumboHeight = $('.jumbotron').outerHeight();;
+    function jumboScroll(){
+        var scroll = $(window).scrollTop();
+        console.log(jumboHeight, scroll, jumboHeight - scroll);
+        $('.bg').css('height', (jumboHeight-scroll) + 'px');
+    }
+
+    $(window).scroll(function(e){
+        jumboScroll();
+    });
+
     var username= 'marydecember_';
     var api_key = 'd43908568d7b06a5c4d049def66ff619';
     var track;
@@ -47,6 +58,7 @@ $(document).ready(function () {
                 var similarTrack;
                 for (var i = 0; i < 4; i ++) {
                     similarTrack = data.similartracks.track[i]
+                    child.removeClass('hidden');
                     child.find('.trackName').text(similarTrack.name);
                     child.find('.trackArtist').text(similarTrack.artist.name);
                     child.find('.trackImg').attr('src', similarTrack.image[2]["#text"]);
@@ -60,15 +72,11 @@ $(document).ready(function () {
     });
 
     function display(){
-        console.log(displayCount);
-        console.log(trackResults.length)
         if (displayCount < 0){
             displayCount = trackResults.length - 1;
-            console.log(displayCount)
         }
         if (displayCount > trackResults.length) {
             displayCount = 0;
-            console.log(displayCount)
         }
         var currentTrack = trackResults[displayCount];
         track = currentTrack.name;
@@ -78,7 +86,5 @@ $(document).ready(function () {
         $('.recentImg').attr('src', currentTrack.image[2]['#text']);
         $('.recentAlbum').text(currentTrack.album['#text']);
     }
-
-
 
 });

@@ -10,47 +10,51 @@
     <script src="script.js"></script>
 </head>
 <body>
-<h1>hi</h1>
-
+<div class="bg"></div>
+<div class="jumbotron">
+    <h1 class="text-center">explore recent tracks</h1>
+    <p class="text-center">click on the image to find similar tracks</p>
+</div>
 <div class="container recent-track">
-   <div class="row">
-       <div>
-           <button class="btn prev">Prev</button>
+   <div class="row recent">
+       <div class="col-md-3">
+           <button class="btn prev"><img src="left.png" class="img-responsive"></button>
        </div>
-        <div class="track col-md-4 col-md-offset-4">
+        <div class="track col-md-4 col-md-offset-1 well">
             <h3 class="recentTrack"></h3>
             <p class="recentArtist"></p>
             <p class="recentAlbum"></p>
             <img class="recentImg">
         </div>
-       <div>
-           <button class="btn next">Next</button>
+       <div class="col-md-3 col-md-offset-1">
+           <button class="btn next"><img src="right.png" class="img-responsive"></button>
        </div>
     </div>
 </div>
 <div class="container">
     <div class="row similar">
-        <div class="track col-md-3">
+        <div class="track col-md-3 well hidden">
             <h3 class="trackName"></h3>
             <p class="trackArtist"></p>
             <img class="trackImg">
         </div>
-        <div class="track col-md-3">
+        <div class="track col-md-3 well hidden">
             <h3 class="trackName"></h3>
             <p class="trackArtist"></p>
             <img class="trackImg">
         </div>
-        <div class="track col-md-3">
+        <div class="track col-md-3 well hidden">
             <h3 class="trackName"></h3>
             <p class="trackArtist"></p>
             <img class="trackImg">
         </div>
-        <div class="track col-md-3">
+        <div class="track col-md-3 well hidden">
             <h3 class="trackName"></h3>
             <p class="trackArtist"></p>
             <img class="trackImg">
         </div>
     </div>
 </div>
+
 </body>
 </html>

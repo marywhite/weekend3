@@ -1,0 +1,52 @@
+body {
+    background-color: rgba(255, 254, 216, .5);
+}
+
+.well {
+    background-color: rgba(114, 183, 183, 0.5);
+    height: 20em;
+    border: 1px solid rgba(47,79,79, .3);
+}
+
+.btn {
+    width: 8em;
+    height: auto;
+    background-color: transparent;
+    margin-top: 6em;
+}
+
+.bg {
+    background: url('background.jpg') no-repeat center center;
+    position: fixed;
+    width: 100%;
+    height: 15em;
+    top:0;
+    left:0;
+    z-index: -1;
+}
+
+.jumbotron {
+    height: 15em;
+    color: white;
+    text-shadow: #2F4F4F 0 1px 1px;
+    background:transparent;
+}
+
+
+.prev {
+    float: right;
+}
+
+.next {
+    float: left;
+}
+
+
+.recentTrack, .recentArtist, .recentAlbum, .trackName, .trackArtist {
+    text-align: center;
+}
+
+.recentImg, .trackImg {
+    margin: 0em auto;
+    display: block;
+}
