@@ -6,9 +6,11 @@ var artist;
 var displayCount = 0;
 var limit = 50;
 
+
 $(document).ready(function () {
 
-    var jumboHeight = $('.jumbotron').outerHeight();;
+    //parallax effect on jumbotron
+    var jumboHeight = $('.jumbotron').outerHeight();
     function jumboScroll(){
         var scroll = $(window).scrollTop();
         $('.bg').css('height', (jumboHeight-scroll) + 'px');
@@ -19,7 +21,7 @@ $(document).ready(function () {
     });
 
 
-// function to get recent tracks
+// ajax function to get recent tracks
     $.ajax({
         type: 'GET',
         url: 'http://ws.audioscrobbler.com/2.0?method=user.getRecentTracks&user=' + encodeURI(username) + '&limit=' + limit + '&api_key=' + api_key + '&format=json',
@@ -35,15 +37,17 @@ $(document).ready(function () {
         }
     });
 
+    //display most recent track
     $('.list').click(function(){
         $('.go').addClass('hidden');
         $('.recent-track').removeClass('hidden');
         $('.explore').removeClass('hidden');
     });
 
+    //cycle through recent tracks
+
     $('.prev').click(function(){
         displayCount--;
-        console.log('prev: ' + displayCount);
         display();
     });
 
@@ -52,8 +56,9 @@ $(document).ready(function () {
        display();
    });
 
-
+    //find similar tracks using current artist & track
     $('.explore').click(function() {
+        $('.tryAgain').addClass('hidden');
         $.ajax({
             type: 'GET',
             url: 'http://ws.audioscrobbler.com/2.0?method=track.getsimilar&artist=' + encodeURI(artist) + '&track=' + track + '&api_key=d43908568d7b06a5c4d049def66ff619&format=json',
@@ -76,6 +81,7 @@ $(document).ready(function () {
                         child = child.next();
                     }
                 } else {
+                    //otherwise, display message to user & hide current similar tracks
                     $('.tryAgain').removeClass('hidden');
                     $('.similar').addClass('hidden');
                 }
@@ -86,6 +92,7 @@ $(document).ready(function () {
         });
     });
 
+//display track as user navigates through array
     function display(){
         $('.lastPlayed').addClass('hidden');
         if (displayCount < 0){

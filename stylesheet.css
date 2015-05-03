@@ -1,40 +1,5 @@
 body {
-    /*background-color: rgba(255, 254, 216, .5);*/
     background-color: #fff;
-}
-
-/*.border {*/
-    /*background-color: rgba(114, 183, 183, 0.5);*/
-    /*height: 24em;*/
-/*}*/
-
-.track {
-    height: 20em;
-    /*border: 1px solid rgba(47,79,79, .3);*/
-    /*border: 1px solid black;*/
-}
-
-.border .well {
-    margin: 2em;
-}
-
-.list, .getSimilar {
-    display: block;
-    margin: 0em auto;
-    font-size: 9em;
-    width: 100%;
-    background-color: transparent;
-}
-
-.getSimilar {
-    font-size: 6em;
-}
-
-.nav {
-    width: 8em;
-    height: auto;
-    background-color: transparent;
-    margin-top: 7em;
 }
 
 .bg {
@@ -54,6 +19,18 @@ body {
     background:transparent;
 }
 
+.track {
+    height: 18em;
+}
+
+
+.nav {
+    width: 8em;
+    height: auto;
+    background-color: transparent;
+    margin-top: 7em;
+}
+
 
 .prev {
     float: right;
@@ -63,6 +40,32 @@ body {
     float: left;
 }
 
+.list, .getSimilar {
+    display: block;
+    margin: 0em auto;
+    width: 100%;
+}
+
+.list {
+    font-size: 9em;
+}
+
+.similar {
+    margin: 2em 0;
+}
+
+.getSimilar {
+    font-size: 6em;
+}
+
+
+.explore {
+    margin-top: 1.5em;
+}
+
+.tryAgain {
+    margin: 2em 0;
+}
 
 .recentTrack, .recentArtist, .recentAlbum, .trackName, .trackArtist {
     text-align: center;
@@ -76,14 +79,10 @@ body {
     display: block;
 }
 
-.recentImg:hover, .trackImg:hover {
-    opacity: .5;
+.list:hover, .getSimilar:hover,  .recentImg:hover, .trackImg:hover, .nav:hover {
+    opacity: .3;
 }
 
-.similar {
-    margin: 2em 0;
-}
-
-.tryAgain {
-    margin: 2em 0;
+.one, .two, .three {
+    border-right: 1px solid rgba(47,79,79, .3);
 }
