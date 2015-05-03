@@ -1,25 +1,27 @@
 body {
-    background-color: rgba(255, 254, 216, .5);
+    /*background-color: rgba(255, 254, 216, .5);*/
+    background-color: #fff;
 }
 
-.border {
-    background-color: rgba(114, 183, 183, 0.5);
-    height: 24em;
-}
+/*.border {*/
+    /*background-color: rgba(114, 183, 183, 0.5);*/
+    /*height: 24em;*/
+/*}*/
 
-.well {
+.track {
     height: 20em;
-    border: 1px solid rgba(47,79,79, .3);
+    /*border: 1px solid rgba(47,79,79, .3);*/
+    /*border: 1px solid black;*/
 }
 
 .border .well {
     margin: 2em;
 }
 
-.list {
+.list, .getSimilar {
     display: block;
     margin: 0em auto;
-    font-size: 10em;
+    font-size: 9em;
     width: 100%;
     background-color: transparent;
 }
@@ -70,3 +72,4 @@ body {
 .similar {
     margin: 2em 0;
 }
+

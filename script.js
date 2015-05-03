@@ -18,18 +18,16 @@ $(document).ready(function () {
     var trackResults;
     var artist;
     var displayCount = 0;
-    var link;
+    var limit = 50;
 
 // function to get recent tracks
-
-
     $.ajax({
         type: 'GET',
-        url: 'http://ws.audioscrobbler.com/2.0?method=user.getRecentTracks&user=' + encodeURI(username) + '&limit=' + 50 + '&api_key=d43908568d7b06a5c4d049def66ff619&format=json',
+        url: 'http://ws.audioscrobbler.com/2.0?method=user.getRecentTracks&user=' + encodeURI(username) + '&limit=' + limit + '&api_key=d43908568d7b06a5c4d049def66ff619&format=json',
         crossDomain: true,
         dataType: 'json',
         success: function (data) {
-            console.log(data)
+            console.log(data);
             trackResults = data.recenttracks.track;
             display();
         },
@@ -40,7 +38,8 @@ $(document).ready(function () {
 
     $('.list').click(function(){
         $('.go').addClass('hidden');
-        $('.recent-track').removeClass('hidden')
+        $('.recent-track').removeClass('hidden');
+        $('.explore').removeClass('hidden');
     });
 
     $('.prev').click(function(){
@@ -54,12 +53,9 @@ $(document).ready(function () {
        display();
    });
 
-   $('.trackImg').click(function(){
 
-   })
-
-
-    $('.recentImg').click(function() {
+    $('.explore').click(function() {
+        $('.getSimilar').css('font-size', '4em');
         $.ajax({
             type: 'GET',
             url: 'http://ws.audioscrobbler.com/2.0?method=track.getsimilar&artist=' + encodeURI(artist) + '&track=' + track + '&api_key=d43908568d7b06a5c4d049def66ff619&format=json',
@@ -97,7 +93,8 @@ $(document).ready(function () {
         artist = currentTrack.artist['#text'];
         $('.recentTrack').text(track);
         $('.recentArtist').text(artist);
-        $('.recentImg').attr('src', currentTrack.image[2]['#text']);
+        $('.recentLink').attr('href', currentTrack.url);
+        $('.recentLink').children().attr('src', currentTrack.image[2]['#text']);
         $('.recentAlbum').text(currentTrack.album['#text']);
     }
 
