@@ -28,7 +28,6 @@ $(document).ready(function () {
         crossDomain: true,
         dataType: 'json',
         success: function (data) {
-            console.log(data);
             trackResults = data.recenttracks.track;
             display();
         },
@@ -69,10 +68,16 @@ $(document).ready(function () {
 
                 //if object is an array (it has similar tracks), display them
                 if( Object.prototype.toString.call( data.similartracks.track ) === '[object Array]' ) {
+
+                    //only display similar tracks of different artists
+                    var allSimilar = data.similartracks.track.filter(function(el){
+                        return el.artist.name != artist;
+                    });
+
                     $('.similar').removeClass('hidden');
                     var similarTrack;
                     for (var i = 0; i < 4; i++) {
-                        similarTrack = data.similartracks.track[i];
+                        similarTrack = allSimilar[i];
                         child.removeClass('hidden');
                         child.find('.trackName').text(similarTrack.name);
                         child.find('.trackArtist').text(similarTrack.artist.name);
